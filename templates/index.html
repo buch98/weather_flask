@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>What is the weather like?</title>
+</head>
+<body>
+    <div class="nav-bar">
+        <h2 class="nav-text">What's the weather like?</h2>
+    </div>
+    <div class="content-1">
+        <form method="POST">
+            <input class="inp-weather" name="city" type="text" placeholder="City Name">
+            <button type='submit' class="btn">Add City</button>
+        </form>
+    </div>
+    <div class="content">
+        {% for weather in weather_data %}
+        <div class="text">
+            <div class="image">
+                <img src = "{{weather['icon']}}" alt="weather_image">
+            </div>
+            <div class="desc">
+                <p>
+                    <span class="title">{{weather['city']}}</span>
+                    <br>
+                    <span class="subtitle">{{weather['temperature']}} F</span>
+                    <br> {{weather['description']}}
+                </p>
+            </div>
+            <div class="delete-weather">
+                <a href="/delete/{{weather['id']}}"><button class="del-btn">Delete</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
